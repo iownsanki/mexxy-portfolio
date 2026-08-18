@@ -17,11 +17,11 @@
       theme: {
         extend: {
           colors: {
+            spideyCrimson: '#FF0033',
+            spideyBlue: '#00E5FF',
             darkVoid: '#050508',
-            cardBg: 'rgba(15, 15, 22, 0.65)',
+            cardBg: 'rgba(12, 12, 18, 0.75)',
             silverBorder: 'rgba(255, 255, 255, 0.08)',
-            spideyWhite: '#FFFFFF',
-            spideySilver: '#A1A1AA',
           },
           fontFamily: {
             display: ['Space Grotesk', 'sans-serif'],
@@ -50,12 +50,12 @@
       background: #050508;
     }
     ::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.15);
+      background: #FF0033;
       border: 2px solid #050508;
       border-radius: 4px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.3);
+      background: #00E5FF;
     }
 
     body {
@@ -66,62 +66,46 @@
 
     /* Subtle Cinematic Halftone dot pattern background */
     .halftone-pattern {
-      background-image: radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-image: radial-gradient(rgba(255, 0, 51, 0.03) 1px, transparent 1px);
       background-size: 24px 24px;
     }
 
-    /* Cinematic 3D Typography Shadow (Monochrome Poster style) */
+    /* Interactive 3D Typography Shadow & Anaglyph */
     .anaglyph-text {
       text-shadow: 
-        2px 2px 0px rgba(255, 255, 255, 0.8),
-        -2px -2px 0px rgba(255, 255, 255, 0.15);
+        3px 3px 0px #FF0033,
+        -3px -3px 0px #00E5FF;
       transition: text-shadow 0.15s ease-out;
     }
 
-    /* Custom Sway Animation for hanging Spider-Man */
-    @keyframes sway {
-      0%, 100% { transform: rotate(-3.5deg); }
-      50% { transform: rotate(3.5deg); }
+    /* Cinematic RGB Glitch Shift Animation on Hover */
+    @keyframes glitch {
+      0% { text-shadow: 3px 3px 0px #FF0033, -3px -3px 0px #00E5FF; }
+      20% { text-shadow: -4px 2px 0px #FF0033, 4px -2px 0px #00E5FF; }
+      40% { text-shadow: 2px -4px 0px #FF0033, -2px 4px 0px #00E5FF; }
+      60% { text-shadow: -2px -2px 0px #FF0033, 2px 2px 0px #00E5FF; }
+      80% { text-shadow: 4px 4px 0px #FF0033, -4px -4px 0px #00E5FF; }
+      100% { text-shadow: 3px 3px 0px #FF0033, -3px -3px 0px #00E5FF; }
     }
 
-    .animate-sway {
+    .glitch-hover:hover {
+      animation: glitch 0.3s steps(2) infinite;
+    }
+
+    /* Custom Elastic Bouncy Sway Animation for hanging Spider-Man */
+    @keyframes bounceSway {
+      0%, 100% { transform: translateY(0px) rotate(-3.5deg); }
+      50% { transform: translateY(15px) rotate(3.5deg); }
+    }
+
+    .animate-bounce-sway {
       transform-origin: top center;
-      animation: sway 8s ease-in-out infinite;
-    }
-
-    @keyframes pulse-glow {
-      0%, 100% {
-        box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.02), 0 0 30px rgba(255, 255, 255, 0.01);
-      }
-      50% {
-        box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.05), 0 0 45px rgba(255, 255, 255, 0.02);
-      }
-    }
-
-    .silver-glow {
-      animation: pulse-glow 4s infinite;
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      10% { transform: translate(-1.5px, -1.5px) rotate(-0.5deg); }
-      20% { transform: translate(2px, 0px) rotate(0.5deg); }
-      30% { transform: translate(0px, 1.5px) rotate(0deg); }
-      40% { transform: translate(0.8px, -0.8px) rotate(0.5deg); }
-      50% { transform: translate(-0.8px, 1.5px) rotate(-0.5deg); }
-      60% { transform: translate(-2px, 0.8px) rotate(0deg); }
-      70% { transform: translate(1.5px, 0.8px) rotate(-0.5deg); }
-      80% { transform: translate(-0.8px, -0.8px) rotate(0.5deg); }
-      90% { transform: translate(1.5px, -1.5px) rotate(0deg); }
-    }
-
-    .shake-trigger {
-      animation: shake 0.3s ease-in-out;
+      animation: bounceSway 7s ease-in-out infinite;
     }
 
     /* Web Overlay Vignette (Moody Movie-like gradient) */
     .vignette-overlay {
-      background: radial-gradient(circle, rgba(5,5,8,0.2) 0%, rgba(5,5,8,0.8) 70%, rgba(5,5,8,0.98) 100%);
+      background: radial-gradient(circle, rgba(5,5,8,0.1) 0%, rgba(5,5,8,0.75) 65%, rgba(5,5,8,0.98) 100%);
     }
 
     /* Spider-Sense Screen Flash */
@@ -130,14 +114,14 @@
       inset: 0;
       z-index: 9999;
       pointer-events: none;
-      border: 0px solid rgba(255, 255, 255, 0.4);
-      box-shadow: inset 0 0 0 0px rgba(255, 255, 255, 0.4);
-      transition: box-shadow 0.2s ease-out, border 0.2s ease-out;
+      border: 0px solid #FF0033;
+      box-shadow: inset 0 0 0 0px #FF0033;
+      transition: box-shadow 0.15s ease-out, border 0.15s ease-out;
     }
 
     .spider-sense-flash.active {
-      border: 4px solid rgba(255, 255, 255, 0.2);
-      box-shadow: inset 0 0 80px rgba(255, 255, 255, 0.15);
+      border: 6px solid #FF0033;
+      box-shadow: inset 0 0 100px rgba(255, 0, 51, 0.7);
     }
 
     /* Hide default cursor on interactive items to maintain custom trail experience */
@@ -158,32 +142,31 @@
     }
   </style>
 </head>
-<body class="text-zinc-100 font-sans selection:bg-white selection:text-black">
+<body class="text-zinc-100 font-sans selection:bg-spideyCrimson selection:text-white">
 
-  <!-- Interactive Custom Web-String Cursor Trail Canvas (Clean Movie-like Web) -->
+  <!-- Interactive Custom Web-String Cursor Trail Canvas (Clean White Web with Red/Blue glows) -->
   <canvas id="web-cursor-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-[999] hidden md:block"></canvas>
 
   <!-- Spider-Sense Flash Element -->
   <div id="spider-flash" class="spider-sense-flash"></div>
 
-  <!-- Hanging Spider-Man (Real Spider-Man Transparent PNG with Sway on the side) -->
-  <div class="fixed top-0 right-6 md:right-16 z-30 pointer-events-none hidden sm:flex flex-col items-center animate-sway">
+  <!-- Hanging Spider-Man (Real Spider-Man Transparent PNG with Elastic Sway & Bounce on the side) -->
+  <div class="fixed top-0 right-6 md:right-16 z-30 pointer-events-none hidden sm:flex flex-col items-center animate-bounce-sway">
     <!-- Thin white web line -->
     <div class="w-[1px] bg-white/20 h-[38vh]"></div>
     <!-- Real Spider-Man PNG -->
-    <img src="https://www.pngall.com/wp-content/uploads/2016/05/Spider-Man-Hanging-PNG.png" alt="Spider-Man" class="w-16 md:w-24 drop-shadow-[0_8px_24px_rgba(255,255,255,0.15)]">
+    <img src="https://www.pngall.com/wp-content/uploads/2016/05/Spider-Man-Hanging-PNG.png" alt="Spider-Man" class="w-16 md:w-24 drop-shadow-[0_8px_24px_rgba(0,229,255,0.25)]">
   </div>
 
   <!-- Hero Video Intro Section -->
   <section id="hero-section" class="relative w-full h-screen overflow-hidden flex flex-col items-center justify-center z-10">
     <!-- Looping Background Video (Metropolitan Slow pan/rotation loop) -->
     <video id="intro-video" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1635805737707-575885ab0820?auto=format&fit=crop&w=1920&q=80">
-      <!-- Slow rotating dramatic night metropolitan skyline, matches the 3D Spider-Man city layout -->
       <source src="https://assets.mixkit.co/videos/preview/mixkit-night-skyline-of-a-big-city-43940-large.mp4" type="video/mp4">
       <source src="https://assets.mixkit.co/videos/preview/mixkit-glowing-lines-of-an-abstract-city-at-night-42232-large.mp4" type="video/mp4">
     </video>
 
-    <!-- Canvas Fallback Particle Grid (Subtle white connected web nodes) -->
+    <!-- Canvas Fallback Particle Grid (Dynamic Red/Blue connected web nodes) -->
     <canvas id="fallback-canvas" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-40"></canvas>
 
     <!-- Dark Overlay Vignette & cinematic black gradients -->
@@ -192,33 +175,33 @@
 
     <!-- Hero Content -->
     <div class="relative z-[3] text-center px-4 flex flex-col items-center max-w-4xl">
-      <!-- Clean, modern layout labels instead of colorful comic badges -->
-      <div class="text-xs uppercase tracking-[0.25em] font-medium text-zinc-400 mb-6 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full select-none backdrop-blur-sm">
+      <!-- Clean, modern layout labels with subtle red/blue outline -->
+      <div class="text-xs uppercase tracking-[0.25em] font-bold text-zinc-300 mb-6 bg-white/5 border border-spideyBlue/20 px-4 py-1.5 rounded-full select-none backdrop-blur-sm shadow-[0_0_15px_rgba(0,229,255,0.05)]">
         Active Spider Node // Earth-616
       </div>
 
-      <!-- Hero Title with Dynamic Parallax 3D Typography -->
-      <h1 id="hero-title" class="font-extrabold text-7xl md:text-9xl tracking-[0.1em] text-white uppercase select-none anaglyph-text transform transition-transform duration-300">
+      <!-- Hero Title with Dynamic Parallax 3D Typography + Glitch Hover -->
+      <h1 id="hero-title" class="font-extrabold text-7xl md:text-9xl tracking-[0.1em] text-white uppercase select-none anaglyph-text transform transition-transform duration-300 glitch-hover">
         MEXXY
       </h1>
 
       <!-- Identity / Role -->
-      <p class="mt-8 text-xl md:text-2xl font-semibold tracking-wide text-white/95 max-w-2xl select-none">
+      <p class="mt-8 text-xl md:text-2xl font-bold tracking-wide text-spideyBlue max-w-2xl select-none text-shadow-[0_2px_10px_rgba(0,229,255,0.2)]">
         Full-Stack Web Slinger & Creative Tech Architect
       </p>
 
-      <p class="mt-3 text-xs md:text-sm text-zinc-500 font-medium tracking-[0.3em] uppercase select-none">
+      <p class="mt-3 text-xs md:text-sm text-zinc-400 font-semibold tracking-[0.3em] uppercase select-none">
         Slinging robust code & immersive experiences across the digital ether
       </p>
 
       <!-- Enter Universe Trigger -->
-      <button id="enter-universe-btn" class="group mt-12 bg-white text-black font-semibold text-sm px-8 py-3.5 border border-white hover:bg-transparent hover:text-white transition-all duration-300 uppercase tracking-widest flex items-center gap-3">
+      <button id="enter-universe-btn" class="group mt-12 bg-white text-black font-semibold text-sm px-8 py-3.5 border border-white hover:bg-transparent hover:text-white transition-all duration-300 uppercase tracking-widest flex items-center gap-3 shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(0,229,255,0.3)]">
         Enter Universe
-        <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1.5"></i>
+        <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1.5 text-spideyCrimson"></i>
       </button>
 
       <!-- Down Arrow Indicator -->
-      <div id="scroll-hint" class="absolute bottom-10 flex flex-col items-center gap-2 text-zinc-500 opacity-60 hover:opacity-100 hover:text-white transition-all duration-300 cursor-pointer">
+      <div id="scroll-hint" class="absolute bottom-10 flex flex-col items-center gap-2 text-zinc-400 opacity-60 hover:opacity-100 hover:text-spideyBlue transition-all duration-300 cursor-pointer">
         <span class="text-[10px] tracking-[0.3em] uppercase font-bold">Scroll Down</span>
         <i data-lucide="chevron-down" class="w-4 h-4 animate-bounce"></i>
       </div>
@@ -232,17 +215,17 @@
     <header class="w-full border-b border-white/5 bg-zinc-950/80 backdrop-blur-md sticky top-0 z-40 px-6 py-4">
       <div class="max-w-7xl mx-auto flex justify-between items-center">
         <!-- Logo -->
-        <a href="#hero-section" class="font-bold text-xl tracking-widest text-white hover:text-zinc-400 transition-colors select-none">
-          MEXXY<span class="text-white/50">.</span>
+        <a href="#hero-section" class="font-bold text-xl tracking-widest text-white hover:text-spideyCrimson transition-colors select-none">
+          MEXXY<span class="text-spideyBlue">.</span>
         </a>
 
         <!-- Contact Handles (Top bar) -->
         <div class="flex items-center gap-4">
           <a href="https://t.me/CODEXMEXXY" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 font-semibold text-xs tracking-wider uppercase hover:bg-white/10 transition-all rounded">
-            <i data-lucide="send" class="w-3.5 h-3.5 text-zinc-400"></i>
+            <i data-lucide="send" class="w-3.5 h-3.5 text-spideyBlue"></i>
             @CODEXMEXXY
           </a>
-          <a href="#contact" class="bg-white text-black font-semibold text-xs px-5 py-2 hover:bg-transparent hover:text-white border border-white transition-all uppercase tracking-wider rounded">
+          <a href="#contact" class="bg-white text-black font-semibold text-xs px-5 py-2 hover:bg-transparent hover:text-white border border-white hover:border-spideyBlue transition-all uppercase tracking-wider rounded shadow-[0_0_10px_rgba(255,255,255,0.05)] hover:shadow-[0_0_15px_rgba(0,229,255,0.2)]">
             Spider-Sense Hub
           </a>
         </div>
@@ -256,9 +239,9 @@
       <section id="about" class="reveal-item grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         <!-- Graphic / Logo Container (Minimalist Cinematic style) -->
         <div class="lg:col-span-5 relative group">
-          <div class="absolute inset-0 bg-white/5 rounded-lg opacity-25 blur-xl group-hover:opacity-40 transition-opacity duration-300"></div>
-          <div class="relative bg-zinc-900/50 backdrop-blur-sm border border-white/10 p-8 shadow-2xl hover:border-white/20 transition-all duration-300">
-            <div class="absolute top-4 left-4 bg-white/10 text-zinc-400 font-medium text-[10px] px-3 py-1 uppercase tracking-widest border border-white/10 rounded">
+          <div class="absolute inset-0 bg-spideyCrimson/5 rounded-lg opacity-25 blur-xl group-hover:opacity-40 transition-opacity duration-300"></div>
+          <div class="relative bg-zinc-900/50 backdrop-blur-sm border border-white/10 p-8 shadow-2xl hover:border-spideyBlue/30 transition-all duration-300">
+            <div class="absolute top-4 left-4 bg-white/5 text-zinc-300 font-medium text-[10px] px-3 py-1 uppercase tracking-widest border border-white/10 rounded">
               Origin Story
             </div>
             
@@ -277,7 +260,7 @@
                 <line x1="15" y1="85" x2="85" y2="15" />
               </svg>
               <!-- Icon -->
-              <i data-lucide="shield" class="w-20 h-20 text-white/40 relative z-10 animate-pulse"></i>
+              <i data-lucide="shield" class="w-20 h-20 text-spideyCrimson/60 relative z-10 animate-pulse"></i>
             </div>
             <div class="mt-6 text-center">
               <span class="text-sm font-semibold tracking-[0.2em] text-zinc-400">DESIGNATION: MEXXY</span>
@@ -288,7 +271,7 @@
         <!-- Bio Description -->
         <div class="lg:col-span-7 space-y-8">
           <div class="bg-zinc-900/40 backdrop-blur-sm border border-white/5 p-8 rounded-lg shadow-xl relative">
-            <p class="text-lg font-medium text-white tracking-wide border-l-2 border-white/40 pl-4">
+            <p class="text-lg font-medium text-white tracking-wide border-l-2 border-spideyCrimson pl-4">
               "Great power requires great architecture."
             </p>
             <p class="mt-6 text-zinc-400 leading-relaxed text-sm md:text-base font-light">
@@ -329,11 +312,11 @@
         </div>
       </section>
 
-      <!-- Projects Section (Sleek Clean Style) -->
+      <!-- Projects Section (Sleek Clean Style with Red/Blue Shadows) -->
       <section id="projects" class="reveal-item space-y-12">
         <!-- Section Header -->
         <div class="flex items-center gap-6">
-          <h2 class="text-xs uppercase tracking-[0.4em] text-zinc-400 bg-white/5 border border-white/10 px-5 py-2.5 rounded select-none font-bold">
+          <h2 class="text-xs uppercase tracking-[0.4em] text-zinc-300 bg-white/5 border border-white/10 px-5 py-2.5 rounded select-none font-bold shadow-[0_0_15px_rgba(255,255,255,0.02)]">
             CODENAME: PROJECTS
           </h2>
           <div class="flex-grow border-b border-zinc-800"></div>
@@ -343,8 +326,8 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           
           <!-- Card 1 -->
-          <div class="bg-zinc-950/40 backdrop-blur-sm border border-white/10 p-8 hover:border-white/30 transition-all duration-300 relative overflow-hidden group rounded-lg">
-            <div class="text-[10px] uppercase font-bold tracking-widest text-zinc-500 mb-2">PROJECT 01 / Web3</div>
+          <div class="bg-zinc-950/40 backdrop-blur-sm border border-white/10 p-8 hover:border-spideyCrimson/30 hover:shadow-[0_0_25px_rgba(255,0,51,0.15)] transition-all duration-300 relative overflow-hidden group rounded-lg">
+            <div class="text-[10px] uppercase font-bold tracking-widest text-spideyBlue mb-2">PROJECT 01 / Web3</div>
             <h3 class="font-bold text-xl text-white tracking-wide mb-3">WEB3 SLING-SHOT</h3>
             <p class="text-zinc-400 text-sm mb-6 leading-relaxed font-light">
               A high-frequency decentralized gateway designed for instantaneous cross-chain token routing. Built with smart web-hook triggers that automatically optimize path routing for gas optimization.
@@ -352,15 +335,15 @@
             
             <!-- Tech Tags -->
             <div class="flex flex-wrap gap-2 mt-auto">
-              <span class="bg-white/5 border border-white/10 text-[9px] tracking-widest font-semibold px-3 py-1 text-zinc-300 uppercase rounded">Web3</span>
+              <span class="bg-white/5 border border-spideyBlue/20 text-[9px] tracking-widest font-semibold px-3 py-1 text-spideyBlue uppercase rounded">Web3</span>
               <span class="bg-white/5 border border-white/10 text-[9px] tracking-widest font-semibold px-3 py-1 text-zinc-300 uppercase rounded">Node.js</span>
               <span class="bg-white/5 border border-white/10 text-[9px] tracking-widest font-semibold px-3 py-1 text-zinc-300 uppercase rounded">APIs</span>
             </div>
           </div>
 
           <!-- Card 2 -->
-          <div class="bg-zinc-950/40 backdrop-blur-sm border border-white/10 p-8 hover:border-white/30 transition-all duration-300 relative overflow-hidden group rounded-lg">
-            <div class="text-[10px] uppercase font-bold tracking-widest text-zinc-500 mb-2">PROJECT 02 / AI Agents</div>
+          <div class="bg-zinc-950/40 backdrop-blur-sm border border-white/10 p-8 hover:border-spideyBlue/30 hover:shadow-[0_0_25px_rgba(0,229,255,0.15)] transition-all duration-300 relative overflow-hidden group rounded-lg">
+            <div class="text-[10px] uppercase font-bold tracking-widest text-spideyCrimson mb-2">PROJECT 02 / AI Agents</div>
             <h3 class="font-bold text-xl text-white tracking-wide mb-3">ARACHNID AI AGENT</h3>
             <p class="text-zinc-400 text-sm mb-6 leading-relaxed font-light">
               Autonomous multi-agent crawler configured to spider through designated repositories, analyzing smart contract architectures for vulnerabilities and generating live threat-level intelligence metrics.
@@ -368,15 +351,15 @@
             
             <!-- Tech Tags -->
             <div class="flex flex-wrap gap-2 mt-auto">
-              <span class="bg-white/5 border border-white/10 text-[9px] tracking-widest font-semibold px-3 py-1 text-zinc-300 uppercase rounded">AI Agents</span>
+              <span class="bg-white/5 border border-spideyCrimson/20 text-[9px] tracking-widest font-semibold px-3 py-1 text-spideyCrimson uppercase rounded">AI Agents</span>
               <span class="bg-white/5 border border-white/10 text-[9px] tracking-widest font-semibold px-3 py-1 text-zinc-300 uppercase rounded">Python</span>
               <span class="bg-white/5 border border-white/10 text-[9px] tracking-widest font-semibold px-3 py-1 text-zinc-300 uppercase rounded">APIs</span>
             </div>
           </div>
 
           <!-- Card 3 -->
-          <div class="bg-zinc-950/40 backdrop-blur-sm border border-white/10 p-8 hover:border-white/30 transition-all duration-300 relative overflow-hidden group rounded-lg">
-            <div class="text-[10px] uppercase font-bold tracking-widest text-zinc-500 mb-2">PROJECT 03 / Operations</div>
+          <div class="bg-zinc-950/40 backdrop-blur-sm border border-white/10 p-8 hover:border-spideyBlue/30 hover:shadow-[0_0_25px_rgba(0,229,255,0.15)] transition-all duration-300 relative overflow-hidden group rounded-lg">
+            <div class="text-[10px] uppercase font-bold tracking-widest text-spideyCrimson mb-2">PROJECT 03 / Operations</div>
             <h3 class="font-bold text-xl text-white tracking-wide mb-3">VENOM-API GATEWAY</h3>
             <p class="text-zinc-400 text-sm mb-6 leading-relaxed font-light">
               High-performance, auto-scaling REST & GraphQL gateway. Capable of handling over 250,000 requests per minute with built-in telemetry, threat protection, and automated load balancing.
@@ -391,8 +374,8 @@
           </div>
 
           <!-- Card 4 -->
-          <div class="bg-zinc-950/40 backdrop-blur-sm border border-white/10 p-8 hover:border-white/30 transition-all duration-300 relative overflow-hidden group rounded-lg">
-            <div class="text-[10px] uppercase font-bold tracking-widest text-zinc-500 mb-2">PROJECT 04 / Cloud</div>
+          <div class="bg-zinc-950/40 backdrop-blur-sm border border-white/10 p-8 hover:border-spideyCrimson/30 hover:shadow-[0_0_25px_rgba(255,0,51,0.15)] transition-all duration-300 relative overflow-hidden group rounded-lg">
+            <div class="text-[10px] uppercase font-bold tracking-widest text-spideyBlue mb-2">PROJECT 04 / Cloud</div>
             <h3 class="font-bold text-xl text-white tracking-wide mb-3">MULTIVERSE CRAWLER</h3>
             <p class="text-zinc-400 text-sm mb-6 leading-relaxed font-light">
               Distributed task orchestration dashboard mapping processes across multiple serverless clusters. Real-time logging visualizes worker thread execution path flows with spider-web node layouts.
@@ -402,7 +385,7 @@
             <div class="flex flex-wrap gap-2 mt-auto">
               <span class="bg-white/5 border border-white/10 text-[9px] tracking-widest font-semibold px-3 py-1 text-zinc-300 uppercase rounded">Node.js</span>
               <span class="bg-white/5 border border-white/10 text-[9px] tracking-widest font-semibold px-3 py-1 text-zinc-300 uppercase rounded">APIs</span>
-              <span class="bg-white/5 border border-white/10 text-[9px] tracking-widest font-semibold px-3 py-1 text-zinc-300 uppercase rounded">Web3</span>
+              <span class="bg-white/5 border border-spideyBlue/20 text-[9px] tracking-widest font-semibold px-3 py-1 text-spideyBlue uppercase rounded">Web3</span>
             </div>
           </div>
 
@@ -413,7 +396,7 @@
       <section id="contact" class="reveal-item space-y-12">
         <!-- Section Header -->
         <div class="flex items-center gap-6">
-          <h2 class="text-xs uppercase tracking-[0.4em] text-zinc-400 bg-white/5 border border-white/10 px-5 py-2.5 rounded select-none font-bold">
+          <h2 class="text-xs uppercase tracking-[0.4em] text-zinc-300 bg-white/5 border border-white/10 px-5 py-2.5 rounded select-none font-bold">
             SPIDER-SENSE HUB
           </h2>
           <div class="flex-grow border-b border-zinc-800"></div>
@@ -427,9 +410,9 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           
           <!-- Telegram Handle Card -->
-          <a href="https://t.me/JUSTGETVIBE" target="_blank" rel="noopener noreferrer" class="bg-zinc-950/40 backdrop-blur-sm border border-white/10 p-8 hover:border-white/30 transition-all duration-300 group text-center flex flex-col items-center justify-center rounded-lg">
+          <a href="https://t.me/JUSTGETVIBE" target="_blank" rel="noopener noreferrer" class="bg-zinc-950/40 backdrop-blur-sm border border-white/10 p-8 hover:border-spideyBlue/30 hover:shadow-[0_0_25px_rgba(0,229,255,0.15)] transition-all duration-300 group text-center flex flex-col items-center justify-center rounded-lg">
             <div class="w-14 h-14 bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-105 transition-transform rounded-full">
-              <i data-lucide="send" class="w-5 h-5 text-white/70"></i>
+              <i data-lucide="send" class="w-5 h-5 text-spideyBlue"></i>
             </div>
             <h3 class="font-bold text-lg text-white tracking-wide mb-2">Direct Signal</h3>
             <span class="text-xs tracking-wider text-zinc-400 group-hover:text-white transition-colors">@JUSTGETVIBE</span>
@@ -437,9 +420,9 @@
           </a>
 
           <!-- Telegram Channel Card -->
-          <a href="https://t.me/CODEXMEXXY" target="_blank" rel="noopener noreferrer" class="bg-zinc-950/40 backdrop-blur-sm border border-white/10 p-8 hover:border-white/30 transition-all duration-300 group text-center flex flex-col items-center justify-center rounded-lg">
+          <a href="https://t.me/CODEXMEXXY" target="_blank" rel="noopener noreferrer" class="bg-zinc-950/40 backdrop-blur-sm border border-white/10 p-8 hover:border-spideyCrimson/30 hover:shadow-[0_0_25px_rgba(255,0,51,0.15)] transition-all duration-300 group text-center flex flex-col items-center justify-center rounded-lg">
             <div class="w-14 h-14 bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-105 transition-transform rounded-full">
-              <i data-lucide="rss" class="w-5 h-5 text-white/70"></i>
+              <i data-lucide="rss" class="w-5 h-5 text-spideyCrimson"></i>
             </div>
             <h3 class="font-bold text-lg text-white tracking-wide mb-2">Codex Channel</h3>
             <span class="text-xs tracking-wider text-zinc-400 group-hover:text-white transition-colors">@CODEXMEXXY</span>
@@ -447,9 +430,9 @@
           </a>
 
           <!-- 1-Click Copy Email Card -->
-          <div id="copy-email-card" class="bg-zinc-950/40 backdrop-blur-sm border border-white/10 p-8 hover:border-white/30 transition-all duration-300 group text-center flex flex-col items-center justify-center relative rounded-lg cursor-pointer">
+          <div id="copy-email-card" class="bg-zinc-950/40 backdrop-blur-sm border border-white/10 p-8 hover:border-spideyBlue/30 hover:shadow-[0_0_25px_rgba(0,229,255,0.15)] transition-all duration-300 group text-center flex flex-col items-center justify-center relative rounded-lg cursor-pointer">
             <div class="w-14 h-14 bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-105 transition-transform rounded-full">
-              <i data-lucide="mail" class="w-5 h-5 text-white/70"></i>
+              <i data-lucide="mail" class="w-5 h-5 text-spideyBlue"></i>
             </div>
             <h3 class="font-bold text-lg text-white tracking-wide mb-2">Electronic Mail</h3>
             
@@ -467,8 +450,8 @@
 
     <!-- Movie Splash Toast Alert (Sleek Spider-Sense notification) -->
     <div id="spider-toast" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[10000] hidden">
-      <div class="bg-zinc-950/95 backdrop-blur-md text-white border border-white/20 p-8 max-w-md shadow-2xl text-center relative rounded-lg">
-        <h4 class="font-bold text-lg tracking-[0.2em] uppercase mb-2">SPIDER-SENSE TRIGGERED</h4>
+      <div class="bg-zinc-950/95 backdrop-blur-md text-white border border-spideyCrimson/30 p-8 max-w-md shadow-[0_0_40px_rgba(255,0,51,0.25)] text-center relative rounded-lg">
+        <h4 class="font-bold text-lg tracking-[0.2em] text-spideyCrimson uppercase mb-2">SPIDER-SENSE TRIGGERED</h4>
         <p class="text-xs tracking-wider text-zinc-400 uppercase">Email copied to clipboard.</p>
         <p class="text-[10px] font-semibold text-zinc-600 mt-4 uppercase tracking-widest">Routing secure // mexxy@mexxy.site</p>
       </div>
@@ -480,11 +463,11 @@
   <footer class="bg-zinc-950 border-t border-white/5 py-8 text-center text-[10px] text-zinc-500 font-bold uppercase tracking-[0.2em] relative z-25">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
       <div>
-        © 2026 Mexxy. Clean Cinematic Design.
+        © 2026 Mexxy. Highly Animated Red & Blue Edition.
       </div>
       <div class="flex gap-6">
-        <a href="https://t.me/JUSTGETVIBE" class="hover:text-white transition-colors">Telegram</a>
-        <a href="https://t.me/CODEXMEXXY" class="hover:text-white transition-colors">Codex Channel</a>
+        <a href="https://t.me/JUSTGETVIBE" class="hover:text-spideyBlue transition-colors">Telegram</a>
+        <a href="https://t.me/CODEXMEXXY" class="hover:text-spideyCrimson transition-colors">Codex Channel</a>
         <a href="#hero-section" class="hover:text-white transition-colors">Top ▲</a>
       </div>
     </div>
@@ -514,7 +497,7 @@
     let videoLoaded = false;
     let fallbackCtx = fallbackCanvas.getContext('2d');
     let particles = [];
-    const particleCount = 65;
+    const particleCount = 70;
 
     // Set canvas dimensions
     function resizeFallbackCanvas() {
@@ -529,10 +512,10 @@
       constructor() {
         this.x = Math.random() * fallbackCanvas.width;
         this.y = Math.random() * fallbackCanvas.height;
-        this.vx = (Math.random() - 0.5) * 0.9;
-        this.vy = (Math.random() - 0.5) * 0.9;
-        this.radius = Math.random() * 1.5 + 1.0;
-        this.color = 'rgba(255, 255, 255, 0.4)';
+        this.vx = (Math.random() - 0.5) * 1.0;
+        this.vy = (Math.random() - 0.5) * 1.0;
+        this.radius = Math.random() * 1.8 + 1.2;
+        this.color = Math.random() > 0.5 ? '#FF0033' : '#00E5FF';
       }
 
       update(mousePos) {
@@ -549,8 +532,8 @@
           const dy = mousePos.y - this.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 180) {
-            this.x += dx * 0.003;
-            this.y += dy * 0.003;
+            this.x += dx * 0.004;
+            this.y += dy * 0.004;
           }
         }
       }
@@ -580,6 +563,30 @@
       currentMousePos.y = null;
     });
 
+    // Web-Shoot click animation nodes
+    let clickWebs = [];
+    window.addEventListener('mousedown', (e) => {
+      const px = e.clientX;
+      const py = e.clientY;
+      
+      // Spawn 12 radiating web threads
+      for (let i = 0; i < 12; i++) {
+        const angle = (i / 12) * Math.PI * 2 + (Math.random() - 0.5) * 0.2;
+        const speed = Math.random() * 2.5 + 2.5;
+        clickWebs.push({
+          startX: px,
+          startY: py,
+          x: px,
+          y: py,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          life: 1.0,
+          decay: Math.random() * 0.02 + 0.015,
+          color: Math.random() > 0.5 ? '#FF0033' : '#00E5FF'
+        });
+      }
+    });
+
     // Particle web simulation loop
     function animateParticles() {
       fallbackCtx.clearRect(0, 0, fallbackCanvas.width, fallbackCanvas.height);
@@ -599,9 +606,11 @@
             fallbackCtx.moveTo(particles[i].x, particles[i].y);
             fallbackCtx.lineTo(particles[j].x, particles[j].y);
             
-            // Silver-white fine webbing lines
-            const alpha = (1 - dist / 120) * 0.12;
-            fallbackCtx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+            // Alternating Red and Blue webbing lines
+            const alpha = (1 - dist / 120) * 0.15;
+            fallbackCtx.strokeStyle = particles[i].color === '#FF0033' 
+              ? `rgba(255, 0, 51, ${alpha})` 
+              : `rgba(0, 229, 255, ${alpha})`;
             fallbackCtx.lineWidth = 0.5;
             fallbackCtx.stroke();
           }
@@ -618,11 +627,53 @@
             fallbackCtx.moveTo(particles[i].x, particles[i].y);
             fallbackCtx.lineTo(currentMousePos.x, currentMousePos.y);
             
-            const alpha = (1 - dist / 180) * 0.18;
-            fallbackCtx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+            const alpha = (1 - dist / 180) * 0.2;
+            fallbackCtx.strokeStyle = particles[i].color === '#FF0033'
+              ? `rgba(255, 0, 51, ${alpha})`
+              : `rgba(0, 229, 255, ${alpha})`;
             fallbackCtx.lineWidth = 0.6;
             fallbackCtx.stroke();
           }
+        }
+      }
+
+      // Draw and update web-shoot clicks
+      for (let i = clickWebs.length - 1; i >= 0; i--) {
+        const cw = clickWebs[i];
+        cw.x += cw.vx;
+        cw.y += cw.vy;
+        cw.life -= cw.decay;
+
+        if (cw.life <= 0) {
+          clickWebs.splice(i, 1);
+          continue;
+        }
+
+        // Draw web spoke
+        fallbackCtx.beginPath();
+        fallbackCtx.moveTo(cw.startX, cw.startY);
+        fallbackCtx.lineTo(cw.x, cw.y);
+        fallbackCtx.strokeStyle = cw.color === '#FF0033'
+          ? `rgba(255, 0, 51, ${cw.life * 0.6})`
+          : `rgba(0, 229, 255, ${cw.life * 0.6})`;
+        fallbackCtx.lineWidth = 1.2 * cw.life;
+        fallbackCtx.stroke();
+
+        // Draw circular nodes
+        fallbackCtx.beginPath();
+        fallbackCtx.arc(cw.x, cw.y, 2.5 * cw.life, 0, Math.PI * 2);
+        fallbackCtx.fillStyle = cw.color;
+        fallbackCtx.fill();
+
+        // Connect adjacent web spoke branches to form webbing matrix
+        const nextIdx = (i + 1) % clickWebs.length;
+        if (clickWebs[nextIdx] && clickWebs[nextIdx].startX === cw.startX) {
+          fallbackCtx.beginPath();
+          fallbackCtx.moveTo(cw.x, cw.y);
+          fallbackCtx.lineTo(clickWebs[nextIdx].x, clickWebs[nextIdx].y);
+          fallbackCtx.strokeStyle = `rgba(255, 255, 255, ${cw.life * 0.15})`;
+          fallbackCtx.lineWidth = 0.5 * cw.life;
+          fallbackCtx.stroke();
         }
       }
 
@@ -634,7 +685,7 @@
     introVideo.addEventListener('playing', () => {
       videoLoaded = true;
       fallbackCanvas.classList.remove('opacity-40');
-      fallbackCanvas.classList.add('opacity-15');
+      fallbackCanvas.classList.add('opacity-20');
     });
 
     // Timeout fallback if video fails to load in 2.5s
@@ -654,7 +705,7 @@
 
 
     // ----------------------------------------------------
-    // Interactive Mouse Web-String Trail Canvas (Movie Web)
+    // Interactive Mouse Web-String Trail Canvas (Red/Blue Glow)
     // ----------------------------------------------------
     const cursorCtx = webCursorCanvas.getContext('2d');
     
@@ -663,8 +714,8 @@
       y: 0,
       targetX: 0,
       targetY: 0,
-      elasticity: 0.14,
-      friction: 0.75,
+      elasticity: 0.15,
+      friction: 0.72,
       vx: 0,
       vy: 0
     };
@@ -707,10 +758,9 @@
         const stretchX = -cursorWeb.vx * 0.45;
         const stretchY = -cursorWeb.vy * 0.45;
         
-        cursorCtx.strokeStyle = 'rgba(255, 255, 255, 0.28)';
+        // 1. Draw web spokes lagging behind mouse movement (White-translucent)
+        cursorCtx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
         cursorCtx.lineWidth = 0.7;
-        
-        // 1. Draw web spokes lagging behind mouse movement
         for (let i = 0; i < numSpokes; i++) {
           const angle = (i / numSpokes) * Math.PI * 2;
           const basePx = Math.cos(angle) * webRadius;
@@ -725,7 +775,7 @@
           cursorCtx.stroke();
         }
         
-        // 2. Draw concentric web rings lagging and deforming
+        // 2. Draw concentric web rings lagging and deforming (Alternating Red/Blue)
         const rings = 2;
         for (let r = 1; r <= rings; r++) {
           const ringRadius = webRadius * (r / rings);
@@ -745,20 +795,20 @@
               cursorCtx.lineTo(px, py);
             }
           }
-          cursorCtx.strokeStyle = 'rgba(255, 255, 255, 0.16)';
+          cursorCtx.strokeStyle = r % 2 === 0 ? 'rgba(0, 229, 255, 0.25)' : 'rgba(255, 0, 51, 0.25)';
           cursorCtx.stroke();
         }
 
         // Draw central target dot
         cursorCtx.beginPath();
         cursorCtx.arc(mouse.x, mouse.y, 3, 0, Math.PI * 2);
-        cursorCtx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+        cursorCtx.fillStyle = '#FF0033';
         cursorCtx.fill();
 
-        // Draw outer target ring
+        // Draw outer target ring (Spidey Blue)
         cursorCtx.beginPath();
         cursorCtx.arc(mouse.x, mouse.y, 7, 0, Math.PI * 2);
-        cursorCtx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
+        cursorCtx.strokeStyle = '#00E5FF';
         cursorCtx.lineWidth = 1.0;
         cursorCtx.stroke();
       }
@@ -778,12 +828,12 @@
       const mouseX = (e.clientX - width / 2) / (width / 2);
       const mouseY = (e.clientY - height / 2) / (height / 2);
 
-      const shiftX = mouseX * 6;
-      const shiftY = mouseY * 6;
+      const shiftX = mouseX * 8;
+      const shiftY = mouseY * 8;
 
       heroTitle.style.textShadow = `
-        ${2 + shiftX}px ${2 + shiftY}px 0px rgba(255, 255, 255, 0.85),
-        ${-2 - shiftX}px ${-2 - shiftY}px 0px rgba(255, 255, 255, 0.15)
+        ${3 + shiftX}px ${3 + shiftY}px 0px #FF0033,
+        ${-3 - shiftX}px ${-3 - shiftY}px 0px #00E5FF
       `;
     });
 
